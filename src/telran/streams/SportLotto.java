@@ -1,8 +1,8 @@
 package telran.streams;
 
-import java.text.ParseException;
+import java.util.Random;
 
-record Range(int min, int max, int quantity) {
+record Range(int min, int max, int count) {
 }
 
 public class SportLotto {
@@ -17,19 +17,10 @@ public class SportLotto {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-        //TODO
-        //printing out sportLotto numbers
-        //application with command line arguments
-        //first argument minimal val
-        //second argument maximal inclusive value
-        //third argument amount of the random numbers
-        //Example: java -jar sportLotto 1 49 7
-        // 3, 10, 49, 1, 40, 6, 7
     }
 
     private static void printLottery(Range range) {
-        int[] array = StreamsIntroductionMethods.getRandomArray(range.min(), range.max(), range.quantity());
+        int[] array = new Random().ints(range.count(), range.min(), range.max()).distinct().toArray();
         StreamsIntroductionMethods.displayShuffle(array);
     }
 
@@ -52,7 +43,7 @@ public class SportLotto {
                     throw new Exception("Count of numbers ");
                 }
             } catch (NumberFormatException e) {
-                throw new Exception("wrong type of quantity range lottery");
+                throw new Exception("wrong type of count range lottery");
             }
         }
         return res;

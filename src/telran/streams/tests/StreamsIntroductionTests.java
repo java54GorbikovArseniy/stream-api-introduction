@@ -51,9 +51,8 @@ public class StreamsIntroductionTests {
     }
 
     @Test
-    void displayShuffleTest(){
+    void displayShuffleTest() {
         int[] testArray = {10, 20, 30, 40};
         displayShuffle(testArray);
     }
-
 }
