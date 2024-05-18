@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.IntSummaryStatistics;
+import java.util.stream.StreamSupport;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -59,7 +60,7 @@ class CollegeTest {
     }
 
     private static Student[] sortStudents(College col) {
-        return Arrays.stream(col.students)
+        return StreamSupport.stream(col.spliterator(), false)
                 .sorted(Comparator.comparingDouble((Student s) -> Arrays.stream(s.marks()).average().orElse(0.0))
                         .thenComparingInt(Student::hours).reversed())
                 .toArray(Student[]::new);
